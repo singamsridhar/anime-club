@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Anime Club</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:url("https://i.pinimg.com/736x/74/f9/fd/74f9fd7d8ab0f6757a8e1fa4465c2001.jpg");
+background-size: cover;
+background-position: center;
+color:white;
+}
+
+
+nav{
+background:black;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo a{
+font-size:28px;
+font-weight:bold;
+color:#ff3c3c;
+text-decoration:none;
+}
+
+.menu a{
+color:white;
+text-decoration:none;
+margin:0 15px;
+font-size:18px;
+}
+
+.menu a:hover{
+color:#ff3c3c;
+}
+
+/* SEARCH */
+
+.search{
+text-align:center;
+padding:20px;
+color: blue;
+}
+
+.search input{
+width:300px;
+padding:10px;
+border-radius:20px;
+border:none;
+outline:none;
+}
+
+/* MARQUEE */
+
+.marquee-box{
+width:100%;
+overflow:hidden;
+background:black;
+padding:10px;
+}
+
+.marquee-text{
+display:inline-block;
+white-space:nowrap;
+padding-left:100%;
+animation:scroll 10s linear infinite;
+}
+
+.marquee-box:hover .marquee-text{
+animation-play-state:paused;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
+}
+
+/* GRID */
+
+.container{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+padding:30px;
+}
+
+/* CARD */
+
+.card{
+background:#1e293b;
+border-radius:10px;
+overflow:hidden;
+padding:10px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+/* BUTTON */
+
+.watch-btn{
+display:inline-block;
+margin:10px;
+padding:10px 20px;
+background:#ff3c3c;
+color:white;
+text-decoration:#ff3c3c;
+border-radius:5px;
+}
+
+.watch-btn:hover{
+background:yellow;
+color:black;
+}
+.network-container{
+position:relative;
+display:flex;
+align-items:center;
+width:100%;
+}
+
+/* arrows */
+
+.scroll-btn{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:black;
+color:white;
+border:none;
+font-size:30px;
+padding:10px;
+cursor:pointer;
+z-index:10;
+opacity:0.7;
+}
+
+.scroll-btn:hover{
+opacity:1;
+}
+
+.left{
+left:0;
+}
+
+.right{
+right:0;
+}
+
+
+/* row */
+
+.network-row{
+display:flex;
+gap:40px;
+padding:20px 50px;
+overflow-x:auto;
+flex-wrap:nowrap;
+scroll-behavior:smooth;
+}
+
+
+/* scrollbar */
+
+.network-row::-webkit-scrollbar{
+height:8px;
+}
+
+.network-row::-webkit-scrollbar-thumb{
+background:red;
+border-radius:20px;
+}
+
+
+/* card */
+
+.network-card{
+min-width:180px;
+flex-shrink:0;   /* IMPORTANT */
+text-align:center;
+}
+
+
+/* image */
+
+.network-card img{
+width:150px;
+height:150px;
+object-fit:contain;
+background:#111;
+padding:20px;
+border-radius:20px;
+transition:0.3s;
+}
+
+.network-card img:hover{
+transform:scale(1.1);
+background:#222;
+}
+
+</style>
+</head>
+
+
+<body>
+   
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">
+<a href="">Anime Club</a>
+</div>
+
+<div class="menu">
+<a href="https://watchanimeworld.net/movies/" target="_blank">Movies</a>
+<a href="https://watchanimeworld.net/series/" target="_blank">Series</a>
+<a href="https://watchanimeworld.net/cartoon/" target="_blank">Cartoon</a>
+</div>
+
+</nav>
+
+<!-- MARQUEE -->
+
+<div class="marquee-box">
+<div class="marquee-text">
+🔥 Welcome to Anime Club 🔥
+</div>
+</div>
+
+<!-- SEARCH -->
+
+<div class="search">
+<input type="text" id="searchBox" placeholder="Search Anime..." onkeyup="searchAnime()">
+</div>
+
+
+
+<!-- ANIME GRID -->
+ <section>
+<h2 style="text-align:center;">Network</h2>
+
+<div class="network-container">
+<button class="scroll-btn left" onclick="scrollLeft()"></button>
+<div class="network-row" id="networkRow">
+<div class="network-card">
+<a href="https://www.hotstar.com/in/explore?search_query=anime" target="_blank">
+<img src="data:image/webp;base64,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">
+</a>
+<h3>Hotstar</h3>
+</div>
+
+
+<div class="network-card">
+<a href="https://disneynow.com/all-shows/disney-channel" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/2019_Disney_Channel_logo.svg">
+</a>
+<h3>Disney Channel</h3>
+</div>
+<div class="network-card">
+<a href="https://www.primevideo.com/region/eu/offers/nonprimehomepage/ref=dv_web_force_root" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png">
+</a>
+<h3>Prime Video</h3>
+</div>
+<div class="network-card">
+<a href="https://www.mxplayer.in/?utm_source=perf_g&utm_medium=web&utm_campaign=Sem_brand_21693379162%25252525257C170317228234%25252525257Cmx%25252525252520player&gad_source=1&gad_campaignid=21693379162&gbraid=0AAAAACj0yj_q7V2WOuzGp4VHMnaQsSScO&gclid=Cj0KCQjwmunNBhDbARIsAOndKplbHfw_ydD7GQNiHuwjKSjn-IJj3zIo70dSQR-8CthH_VvtN_B7p8IaAomiEALw_wcB&search=true&q=anime">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Final_logo_of_app.jpg">
+</a>
+<h3>MX Player</h3>
+</div>
+<div class="network-card">
+<a href="https://www.sonyliv.com/listing/sony-yay-38048_8725" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/SONY_YAY_2022_Logo.png">
+</a>
+<h3>SONY YAY!</h3>
+</div>
+<div class="network-card">
+<a href="https://www.netflix.com/" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
+</a>
+<h3>Netflix</h3>
+</div>
+
+</section>
+<br></br>
+<h2 style="text-align:center">Anime</h2>
+<div class="container">
+
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/naruto/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/xppeysfvDKVx775MFuH8Z9BlpMk.jpg">    </a>
+<h3 class="title">Naruto</h3>
+<button ><a href="https://watchanimeworld.net/series/naruto/" target="_blank">Watch</a></button>
+</div>
+
+
+
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/demon-slayer/" target="_blank"><img src="https://image.tmdb.org/t/p/w300/xUfRZu2mi8jH6SzQEJGP6tjBuYj.jpg"></a>
+<h3 class="title">Demon Slayer</h3>
+<button ><a href="https://watchanimeworld.net/series/demon-slayer/" target="_blank">Watch</a></button>
+</div>
+
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/jujutsu-kaisen/" target="_blank"><img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR_70yyhIVhbuEAyy0y_BGCAuznC-2CYuW4MEbFSTb2ZDxrx0JG"></a>
+<h3 class="title">Jujutsu Kaisen</h3>
+<button ><a href="https://watchanimeworld.net/series/jujutsu-kaisen/" target="_blank">Watch</a></button>
+</div>
+
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/attack-on-titan/" target="_blank"><img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSvAzMxVb7pQUlHGjtC8do83vd-UClldQQivBaI3Dq1ny95Ewf4"></a>
+<h3 class="title">Attack on Titan</h3>
+<button ><a href="https://watchanimeworld.net/series/attack-on-titan/">Watch</a></button>
+</div>
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/the-daily-life-of-the-immortal-king/" target="_blank"><img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR-e1C8zw_WrjKV1OvNW7nK8dZulXa9Z242RPZR78Iz8dcDKP1b">    </a>
+<h3 class="title">the daily life of immortal king</h3>
+<button ><a href="https://watchanimeworld.net/series/the-daily-life-of-the-immortal-king/" target="_blank">Watch</a></button>
+</div>
+
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/doraemon/" target="_blank"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtL9LeSxlbYbMluNP6VFhdOPhHS88mPU8YByCtv7MSjas1lWy1"></a>
+<h3 class="title">Doraemon</h3>
+<button ><a href="https://watchanimeworld.net/series/doraemon/" target="_blank">Watch</a></button>
+</div>
+
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/naruto-shippuden/" target="_blank" ><img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcShVDGU3fSfnqTuYaApBArkGPixLvTXcB8NiRykxjL-Q1YKbIo7"></a>
+<h3 class="title">Naruto Shippuden</h3>
+<button ><a href="https://watchanimeworld.net/series/naruto-shippuden/" target="_blank">Watch</a></button>
+</div>
+
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/One-piece/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/uiIB9ctqZFbfRXXimtpmZb5dusi.jpg"></a>
+<h3 class="title">One piece</h3>
+<button ><a href="https://watchanimeworld.net/series/One-piece/" target="_blank">Watch</a></button>
+</div>
+
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/hunter-x-hunter/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/i2EEr2uBvRlAwJ8d8zTG2Y19mIa.jpg"></a>
+<h3 class="title">Hunter x Hunter</h3>
+<button ><a href="https://watchanimeworld.net/series/hunter-x-hunter/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/easygoing-territory-defense-by-the-optimistic-lord/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/2ctXv1LyyVad5VLToS1t2ZqSCQa.jpg"></a>
+<h3 class="title">Easygoing Territory Defense by the Optimistic Lord</h3>
+<button ><a href="https://watchanimeworld.net/series/easygoing-territory-defense-by-the-optimistic-lord/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/spy-x-family/" target="_blank"><img src="data:image/webp;base64,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"></a>
+<h3 class="title">Spy x Family</h3>
+<button><a href="https://watchanimeworld.net/series/spy-x-family/" target="_blank">watch</a></button>
+</div>
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/one-punch-man/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/jbYJuxfZMpYDalkiOnBcCv9TaL.jpg"></a>
+<h3 class="title">One-Punch Man</h3>
+<button><a href="https://watchanimeworld.net/series/one-punch-man/" target="_blank">watch</a></button>
+</div>
+<div class="card anime">
+<a href="https://watchanimeworld.net/movies/black-clover-sword-of-the-wizard-king/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/9YEGawvjaRgnyW6QVcUhFJPFDco.jpg"></a>
+<h3  class="title">Black Clover:Swords of the Wizard King</h3>
+<button ><a href="https://watchanimeworld.net/series/black-clover-sword-of-the-wizard-king/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+<a href="https://watchanimeworld.net/movies/dragon-ball-z-battle-of-gods/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/nxZEdYcHMuD8SSuwusDnK9CD2H1.jpg"></a>
+<h3 class="title">Dragon Ball Z: Battle of Gods</h3>
+<button ><a href="https://watchanimeworld.net/movies/dragon-ball-z-battle-of-gods/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+<a href="https://watchanimeworld.net/movies/shinchan-the-movie-mr-smellys-ambition/" target="_blank"><img src="https://watchanimeworld.net/files/Poster/M957.webp"></a>
+<h3 class="title">Shinchan: The Movie - Mr. Smelly's Ambition</h3>
+<button ><a href="https://watchanimeworld.net/movies/shinchan-the-movie-mr-smellys-ambition/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+<a href="https://watchanimeworld.net/movies/the-witcher-nightmare-of-the-wolf/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/3sLz2yv6vBDWqBbd8rdnNeoJ2kJ.jpg"></a>
+<h3 class="title">The Witcher: Nightmare of the Wolf</h3>
+<button ><a href="https://watchanimeworld.net/movies/the-witcher-nightmare-of-the-wolf/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/solo-leveling/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/rsOApVLbIQEcNkqSlOxNPyg3FyI.jpg">
+</a>
+<h3 class="title">Solo Leveling</h3>
+<button><a href="https://watchanimeworld.net/series/solo-leveling/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+<a href="https://watchanimeworld.net/series/devil-may-cry/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/syY5tQzZDdiwGx71cj1Zz4rtrDL.jpg"></a>
+<h3 class="title">Devil May Cry</h3>
+<button><a href="https://watchanimeworld.net/series/devil-may-cry/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">  
+<a href="https://watchanimeworld.net/series/overlord/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/aSjpVCanDAwCopdjIgWwrxOWnWf.jpg"></a>
+<h3 class="title">Overlord</h3>  
+<button><a href="https://watchanimeworld.net/series/overlord/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="http://watchanimeworld.net/series/wind-breaker/" target="_blank"><img src=https://image.tmdb.org/t/p/w185/3kTFL3PAeTyS8gGZAh0iYG6NNjt.jpg></a>
+    <h3 class="title">Wind Breaker</h3>
+    <button><a href="http://watchanimeworld.net/series/wind-breaker/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/once-upon-a-witchs-death/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/5Gr2mDFSGHhiEYrNfP6vbYtuNrT.jpg"></a>
+    <h3 class="title">Once Upon a Witch's Death</h3>
+    <button><a href="https://watchanimeworld.net/series/once-upon-a-witchs-death/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/blue-lock/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/fT9W86KFA9Khy2hIbkfClI8IYDH.jpg"></a>
+    <h3 class="title">Blue Lock</h3>
+    <button><a href="https://watchanimeworld.net/series/blue-lock/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/there-was-a-cute-girl-in-the-heros-party-so-i-tried-confessing-to-her/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/lUIuuvxthqaK4euFHTNIsRmdf3s.jpg"></a>
+    <h3 class="title">There Was a Cute Girl in the Hero's Party, So I Tried Confessing to Her</h3>
+    <button><a href="https://watchanimeworld.net/series/there-was-a-cute-girl-in-the-heros-party-so-i-tried-confessing-to-her/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/bofuri-i-dont-want-to-get-hurt-so-ill-max-out-my-defense-2/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/fdcMiknnRcmVgWb9wGS9TxE06cG.jpg"></a>
+    <h3 class="title">Bofuri: I Don't Want to Get Hurt, so I'll Max Out My Defense</h3>
+    <button><a href="https://watchanimeworld.net/series/bofuri-i-dont-want-to-get-hurt-so-ill-max-out-my-defense-2/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/roll-over-and-die-i-will-fight-for-an-ordinary-life-with-my-love-and-cursed-sword/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/uzRpWknriZnd8fxkse5sfVaQwJn.jpg"></a>
+    <h3 class="title">Roll Over and Die: I Will Fight for an Ordinary Life with My Love and Cursed Sword</h3>
+    <button><a href="https://watchanimeworld.net/series/roll-over-and-die-i-will-fight-for-an-ordinary-life-with-my-love-and-cursed-sword/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/a-misanthrope-teaches-a-class-for-demi-humans/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/yOM6DxJblSheZwOeGwAzfIHxnCc.jpg"></a>
+    <h3 class="title">A Misanthrope Teaches a Class for Demi-Humans</h3>
+    <button><a href="https://watchanimeworld.net/series/a-misanthrope-teaches-a-class-for-demi-humans/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/Yuri!!!-on-Ice/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/oxenakJNCj06JrWHENjvwaWGcSz.jpg"></a>
+    <h3 class="title">Yuri!!! on Ice</h3>
+    <button><a href="https://watchanimeworld.net/series/Yuri!!!-on-Ice/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="http://watchanimeworld.net/series/trigun-stampede/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/h1AvI9Mt6v15q5ynb3t9Dp4czBm.jpg"></a>
+    <h3 class="title">Trigun Stampede</h3>
+    <button><a href="http://watchanimeworld.net/series/trigun-stampede/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/dark-moon-the-blood-altar/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/68HcRvCpiajsPhKn1MnV4hqeCAN.jpg"></a>
+    <h3 class="title">Dark Moon: The Blood Altar</h3>
+    <button><a href="https://watchanimeworld.net/series/dark-moon-the-blood-altar/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/movies/your-name/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/q719jXXEzOoYaps6babgKnONONX.jpg"></a>
+    <h3 class="title">Your Name</h3>
+    <button><a href="https://watchanimeworld.net/movies/your-name/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/movies/spirited-away/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/39wmItIWsg5sZMyRUHLkWBcuVCM.jpg"></a>
+    <h3 class="title">Spirited Away</h3>
+    <button><a href="https://watchanimeworld.net/movies/spirited-away/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/movies/transformers-prime-beast-hunters-predacons-rising/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/4T4pQqr2RoVgWQYtIzDGMByktwq.jpg"></a>
+    <h3 class="title">Transformers Prime: Beast Hunters - Predacons Rising</h3>
+    <button><a href="https://watchanimeworld.net/movies/transformers-prime-beast-hunters-predacons-rising/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/movies/a-salad-bowl-of-eccentrics/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/6dumHhfa0BMzjwEZpj9o4uVcGpP.jpg"></a>
+    <h3 class="title">A Salad Bowl of Eccentrics</h3>
+    <button><a href="https://watchanimeworld.net/movies/a-salad-bowl-of-eccentrics/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/suicide-squad-isekai/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/AbVwsBJnLoqJzPJn8dlGFSGfygy.jpg"></a>
+    <h3 class="title">Suicide Squad: Isekai</h3>
+    <button><a href="https://watchanimeworld.net/series/suicide-squad-isekai/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/to-be-hero-x/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/7ynNG9lYS9HIR8cYMgawO19VPkg.jpg"></a>
+    <h3 class="title">To Be Hero X</h3>
+    <button><a href="https://watchanimeworld.net/series/to-be-hero-x/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/there-was-a-cute-girl-in-the-heros-party-so-i-tried-confessing-to-her/" target="_blank" ><img src="https://image.tmdb.org/t/p/w185/lUIuuvxthqaK4euFHTNIsRmdf3s.jpg"></a>
+    <h3 class="title">There Was a Cute Girl in the Hero's Party, So I Tried Confessing to Her</h3>
+    <button><a href="https://watchanimeworld.net/series/there-was-a-cute-girl-in-the-heros-party-so-i-tried-confessing-to-her/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/sentenced-to-be-a-hero/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/k8bh5mvHDx3czHSF56v9lRyulLC.jpg"></a>
+    <h3 class="title">Sentenced to Be a Hero</h3>
+    <button><a href="https://watchanimeworld.net/series/sentenced-to-be-a-hero/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/tatsuki-fujimoto-17-26/" target="_blank"><img src="https://image.tmdb.org/t/p/w185/rVBxMx1IrBdxbxbBuOWK8kiurMB.jpg"></a>
+    <h3 class="title">Tatsuki Fujimoto: 17-26</h3>
+    <button><a href="https://watchanimeworld.net/series/tatsuki-fujimoto-17-26/" target="_blank">Watch</a></button>
+</div>
+<div class="card anime">
+    <a href="https://watchanimeworld.net/series/ragna-crimson/" target="_blank" ><img src="https://image.tmdb.org/t/p/w185/oGmNWwV3wgp1DZXTOLSAYZZgh3X.jpg"></a>
+    <h3 class="title">Ragna Crimson</h3>
+    <button><a href="https://watchanimeworld.net/series/ragna-crimson/" target="_blank">Watch</a></button>
+</div><br>
+<br>
+<div class="footer">
+    <p>&copy; 2026 Anime Search. All rights reserved.</p>
+</div>
+
+<script>
+
+function searchAnime()
+{
+    let input = document.getElementById("searchBox").value.toLowerCase();
+    let cards = document.getElementsByClassName("anime");
+
+    for(let i = 0; i < cards.length; i++)
+    {
+        let title = cards[i].getElementsByClassName("title")[0].innerText.toLowerCase();
+
+        if(title.includes(input))
+        {
+            cards[i].style.display = "";
+        }
+        else
+        {
+            cards[i].style.display = "none";
+        }
+    }
+}
+
+</script>
+<script>
+function scrollLeft(){
+document.getElementById("networkRow").scrollBy({
+left:-300,
+behavior:"smooth"
+});
+}
+
+function scrollRight(){
+document.getElementById("networkRow").scrollBy({
+left:300,
+behavior:"smooth"
+});
+}
+</script>
+</body>
+</html>
