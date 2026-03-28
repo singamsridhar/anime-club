@@ -28,7 +28,7 @@ The project is designed for anime lovers where users can explore anime content.
 - CSS
 
 ## 📂 Project Files
-- index.html
+- miniproject1.html
 - miniproject12.html
 
 ## 🔗 GitHub Link
