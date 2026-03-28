@@ -10,6 +10,19 @@ The project is designed for anime lovers where users can explore anime content.
 - Navigation to anime page
 - Responsive layout
 
+## 🖼️ Screenshots
+
+### 🏠 Home Page
+![Home Page](img1.png)
+
+### 🎬 Anime Page
+![Anime Page](img2.png)
+![Anime Page](img3.png)
+![Anime Page](img4.png)
+![Anime Page](img5.png)
+![Anime Page](img6.png)
+![Anime Page](img7.png)
+
 ## 🛠️ Technologies Used
 - HTML
 - CSS
@@ -22,5 +35,5 @@ The project is designed for anime lovers where users can explore anime content.
 https://github.com/singamsridhar/anime-club
 
 ## 👨‍💻 Author
-Sridhar
+Sridhar  
 CSE Student
